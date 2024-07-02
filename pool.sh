@@ -12,3 +12,6 @@ cat /var/log/auth.log | perl -anle 'print "$F[4]"' | sed s/[:[].*// | sort | uni
 cat <<'EOF' > input.txt
 echo "$0"
 EOF
+
+# tmuxの番号が連続しているセッションを削除する
+for i in {0..3}; do tmux kill-session -t $i; done
