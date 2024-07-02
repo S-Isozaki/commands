@@ -7,3 +7,8 @@ cat /var/log/auth.log | perl -anle 'print "$F[4]"' | sed s/[:[].*// | sort | uni
 
 # echoのヘルプをページャを用いて読みたいとき
 /usr/bin/echo --help |& less
+
+# EOFをシングルクオーテーションで囲むことで、パラメータの展開を防げる
+cat <<'EOF' > input.txt
+echo "$0"
+EOF
