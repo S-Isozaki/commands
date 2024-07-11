@@ -34,3 +34,6 @@ vim <(kubectl get -o=json pods) # :set ft=json 等を行うと見やすくなる
 
 # 先頭行以外をソート(これは2つ目のカラムについて数値順)
 { echo 100000 100000; for i in {1..10}; do echo $RANDOM $RANDOM; done; } | awk 'NR==1; NR>1{print $0 | sort -n -k 2}'
+
+# apt show の説明文に出てきたURLを持つサイトのHTMLを取得する
+curl -L `apt-cache show exim4-base | grep http://w | sed -e s/ // -e s/. .*// | uniq`
