@@ -31,3 +31,12 @@ kubectl config get-clusters | for i in {1..4}; do read x; if [[ $x != "minikube"
 
 # 静的コード解析
 echo 'kubectl config get-clusters | while read x; do if [[ $x != "minikube" && $x != "NAME" ]]; then kubectl config delete-cluster $x ; fi; done' | bash -n
+
+# 前後の特定の行だけトリム
+sed '1,7d;$d' $input_file
+
+# (英字)(数字).tspの形式で統一されているファイル名の数字だけ
+ls *.tsp | sed -e 's/^[a-zA-Z]*//' -e 's/\.tsp$//'
+
+# あるプロセス内にてシェル変数を変更するためには、サブプロセスとしてプロセスを実行することを回避する必要がある（パイプで送るとサブプロセスとして実行される）
+i=0; for word in $(sed '1,7d;$d' si1032.tsp); do i=$(( i+1 )); done; echo $i

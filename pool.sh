@@ -7,6 +7,7 @@ dpkg -S /usr/bin/tac
 
 # echoのヘルプをページャを用いて読みたいとき
 /usr/bin/echo --help |& less
+eval "$(which echo) --help" |& less
 
 # EOFをシングルクオーテーションで囲むことで、パラメータの展開を防げる
 cat <<'EOF' > input.txt
@@ -37,3 +38,7 @@ vim <(kubectl get -o=json pods) # :set ft=json 等を行うと見やすくなる
 
 # apt show の説明文に出てきたURLを持つサイトのHTMLを取得する
 curl -L `apt-cache show exim4-base | grep http://w | sed -e s/ // -e s/. .*// | uniq`
+
+# sedで特定の行だけ文字列の置換をしたのち出力する
+sed '3{s/^DIMENSION: //;p}' input_file # ;で分ける
+
