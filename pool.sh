@@ -1,5 +1,6 @@
 # あるコマンドがどのパッケージに含まれているかを知りたいとき
 dpkg -S /usr/bin/tac
+dpkg -S $(which tac)
 
 # auth.logに記述されているコマンドを集計する
 # cat /var/log/auth.log | awk '{print $5}' | sed s/[:[].*// | sort | uniq -c
